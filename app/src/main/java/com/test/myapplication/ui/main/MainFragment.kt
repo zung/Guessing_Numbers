@@ -20,8 +20,8 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
-    lateinit var tv: TextView
     lateinit var btn: Button
+    lateinit var btnGuessNumber: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,9 +40,9 @@ class MainFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        tv = view.findViewById(R.id.message)
         btn = view.findViewById(R.id.button)
-        view.setOnTouchListener { v, event ->
+        btnGuessNumber = view.findViewById(R.id.btn_guess_number)
+        view.setOnTouchListener { _, _ ->
             viewModel.setData(System.currentTimeMillis().toString())
             false
         }
@@ -50,13 +50,8 @@ class MainFragment : Fragment() {
             (requireActivity() as MainActivity).jump()
         }
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        // TODO: Use the ViewModel
-        viewModel.run {
-            getData().observe(viewLifecycleOwner, { tv.text = it })
+        btnGuessNumber.setOnClickListener {
+            (requireActivity() as MainActivity).guessNumber()
         }
     }
 

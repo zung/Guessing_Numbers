@@ -2,7 +2,8 @@ package com.test.myapplication
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.test.myapplication.ui.main.DetailFragment
+import com.test.myapplication.ui.main.GuessNumberFragment
+import com.test.myapplication.ui.main.MindReadingFragment
 import com.test.myapplication.ui.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
@@ -19,8 +20,16 @@ class MainActivity : AppCompatActivity() {
 
     fun jump() {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, DetailFragment.newInstance())
-            .commitNow()
+            .replace(R.id.container, MindReadingFragment.newInstance())
+            .addToBackStack("mind")
+            .commitAllowingStateLoss()
+    }
+
+    fun guessNumber() {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, GuessNumberFragment.newInstance())
+            .addToBackStack("guess")
+            .commitAllowingStateLoss()
     }
 
     fun back() {
@@ -28,5 +37,4 @@ class MainActivity : AppCompatActivity() {
             .replace(R.id.container, MainFragment.newInstance())
             .commitNow()
     }
-
 }

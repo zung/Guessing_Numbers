@@ -8,29 +8,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.test.myapplication.MainActivity
 import com.test.myapplication.R
 import com.test.myapplication.databinding.DetailFragmentBinding
+import com.test.myapplication.ui.main.adapter.IMAGE_TYPE
+import com.test.myapplication.ui.main.adapter.NUMBER_TYPE
+import com.test.myapplication.ui.main.adapter.NumberAdapter
+import com.test.myapplication.ui.main.adapter.TEXT_TYPE
 import kotlinx.coroutines.async
 import kotlinx.coroutines.delay
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.math.log
 
-class DetailFragment : Fragment() {
+class MindReadingFragment : Fragment() {
 
     companion object {
-        fun newInstance() : DetailFragment {
-            val fr = DetailFragment()
+        fun newInstance() : MindReadingFragment {
+            val fr = MindReadingFragment()
 
             return fr
         }
@@ -139,11 +140,11 @@ class DetailFragment : Fragment() {
             restart()
         }
 
-        (mBinding.rvWrap.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
+        (mBinding.rvNumber.itemAnimator as DefaultItemAnimator).supportsChangeAnimations = false
 
         selectItemCount()
 
-        mBinding.rvWrap.addItemDecoration(object : ItemDecoration() {
+        mBinding.rvNumber.addItemDecoration(object : ItemDecoration() {
             override fun getItemOffsets(
                 outRect: Rect,
                 view: View,
@@ -166,7 +167,7 @@ class DetailFragment : Fragment() {
         })
 
         mAdapter = NumberAdapter(list)
-        mBinding.rvWrap.adapter = mAdapter
+        mBinding.rvNumber.adapter = mAdapter
 
         mBinding.btnImage.setOnClickListener {
             mAdapter.type = IMAGE_TYPE
@@ -195,7 +196,7 @@ class DetailFragment : Fragment() {
         val spanCount = if (itemCount in listOf(2, 4)) itemCount / 2 else 4
         gridLayoutManager = GridLayoutManager(context, spanCount)
 
-        mBinding.rvWrap.layoutManager = gridLayoutManager
+        mBinding.rvNumber.layoutManager = gridLayoutManager
         logarithm = log(itemCount.toFloat(), 2f)
     }
 
@@ -234,7 +235,7 @@ class DetailFragment : Fragment() {
 
     private fun clickBottom() {
         if (gameOver) {
-            Toast.makeText(context, "如果想继续玩请点击重玩！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.play_agin), Toast.LENGTH_SHORT).show()
             return
         } else {
             viewModel.isRunning.postValue(true)
@@ -248,7 +249,7 @@ class DetailFragment : Fragment() {
 
     private fun clickTop() {
         if (gameOver) {
-            Toast.makeText(context, "如果想继续玩请点击重玩！", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, getString(R.string.play_agin), Toast.LENGTH_SHORT).show()
             return
         } else {
             viewModel.isRunning.postValue(true)

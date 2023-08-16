@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">My Application</string>
+    <string name="app_name">读心术</string>
     <string name="image_type">图片</string>
     <string name="text_type">文字</string>
     <string name="number_type">数字</string>
@@ -11,4 +11,5 @@
     <string name="you_select_top">你选择的是在上层</string>
     <string name="please_select_an_item">请选择一个%1$s，并说出它是在上层还是下层</string>
     <string name="tell_me_use_click_button">通过点击按钮\"上\" 或 \"下\" 告诉我</string>
+    <string name="play_agin">如果想继续玩请点击重玩！</string>
 </resources>

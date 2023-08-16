@@ -1,4 +1,4 @@
-package com.test.myapplication.ui.main
+package com.test.myapplication.ui.main.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,6 +7,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.test.myapplication.R
+import com.test.myapplication.ui.main.ItemData
 
 const val IMAGE_TYPE = 1
 const val TEXT_TYPE = 2
@@ -16,12 +17,12 @@ class NumberAdapter(val list: ArrayList<Int>): RecyclerView.Adapter<NumberAdapte
 
     var type: Int = NUMBER_TYPE
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberAdapter.NumberHolder
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NumberHolder
             = NumberHolder(LayoutInflater.from(parent.context).inflate(R.layout.item_number, parent, false))
 
     override fun getItemCount(): Int = list.size
 
-    override fun onBindViewHolder(holder: NumberAdapter.NumberHolder, position: Int) {
+    override fun onBindViewHolder(holder: NumberHolder, position: Int) {
         if (type == IMAGE_TYPE) {
             holder.ivPic.visibility = View.VISIBLE
             holder.tvNumber.visibility = View.GONE
