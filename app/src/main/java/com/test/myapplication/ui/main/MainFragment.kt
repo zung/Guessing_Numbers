@@ -56,7 +56,7 @@ class MainFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         // TODO: Use the ViewModel
         viewModel.run {
-            getData().observe(this@MainFragment, { tv.text = it })
+            getData().observe(viewLifecycleOwner, { tv.text = it })
         }
     }
 
