@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 import com.test.myapplication.R
 import com.test.myapplication.databinding.FragmentGuessNumberBinding
 import com.test.myapplication.ui.main.adapter.WrapAdapter
+import com.test.myapplication.ui.main.data.NumberWrap
 import kotlin.math.pow
 
 /**
@@ -55,12 +56,24 @@ class GuessNumberFragment : Fragment() {
         })
         val list = createData()
         mBinding.rvWrap.adapter = WrapAdapter(list)
+
+        mBinding.btnAnswer.setOnClickListener {
+            var result = 0.0
+
+            list.forEachIndexed { index, numberWrap ->
+                if (numberWrap.isSelected) {
+                    result += 2.0.pow(index)
+                }
+            }
+
+            mBinding.tvResult.text = "如果没猜错的话，您心里想的数字是：${result.toInt()}"
+        }
     }
 
-    private fun createData(): Array<ArrayList<Int>> {
-        val data = Array<ArrayList<Int>>(6){ arrayListOf() }
+    private fun createData(): Array<NumberWrap> {
+        val data = Array(6) {NumberWrap()}
 
-        for (i in 1 until 64) {
+        for (i in 0 until 64) {
             val placeHolder = intArrayOf(0, 0, 0, 0, 0, 0)
             var sum = 0.0
 
@@ -90,7 +103,10 @@ class GuessNumberFragment : Fragment() {
 
             placeHolder.forEachIndexed {ind, it ->
                 if (it == 1) {
-                    data[ind].add(i)
+                    if (data[ind].list == null) {
+                        data[ind].list = ArrayList()
+                    }
+                    data[ind].list?.add(i)
                 }
             }
         }

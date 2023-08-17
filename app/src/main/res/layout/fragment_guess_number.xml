@@ -6,136 +6,56 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.GuessNumberFragment">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent">
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_wrap"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_wrap"/>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
             android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_wrap"
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_wrap"/>
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="请你从数字1到63中随便想一个数字，记在心里，不要告诉我，可以偷偷告诉其他人。然后请观察上面6列数字表格中的每一列数字，如果在某一列数字中包含你选择的那个数字，请点击选中这一列，如果不包含你所选的数字，请取消选择！如果你观察完毕，请点击”我观察完了，请告诉我答案“"
+                android:textSize="12sp"
+                android:textColor="@color/black"/>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
                 android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                android:layout_marginLeft="5dp"
+                android:text="我观察完了，请告诉我答案"
+                android:id="@+id/btn_answer"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="有"
-                        android:id="@+id/btn_yes_0"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="有"
-                        android:id="@+id/btn_yes_1"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="有"
-                        android:id="@+id/btn_yes_2"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="有"
-                        android:id="@+id/btn_yes_3"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="有"
-                        android:id="@+id/btn_yes_4"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="有"
-                        android:id="@+id/btn_yes_5"/>
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
-                    android:orientation="horizontal">
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="无"
-                        android:id="@+id/btn_no_0"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="无"
-                        android:id="@+id/btn_no_1"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="无"
-                        android:id="@+id/btn_no_2"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="无"
-                        android:id="@+id/btn_no_3"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="无"
-                        android:id="@+id/btn_no_4"/>
-
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10px"
-                        android:text="无"
-                        android:id="@+id/btn_no_5"/>
-                </LinearLayout>
-            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:text=""
+                android:id="@+id/tv_result"/>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
